@@ -6,6 +6,7 @@ metadata:
 spec:
   hostname: "*"
   prefix: /login
+  rewrite: ""
   service: auth.demo:80
   timeout_ms: 10000
 ---
@@ -17,6 +18,7 @@ metadata:
 spec:
   hostname: "*"
   prefix: /boards/
+  rewrite: ""
   service: boards.demo:80
   tls: istio-upstream
   timeout_ms: 15000

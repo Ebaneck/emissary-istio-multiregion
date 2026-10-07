@@ -23,6 +23,11 @@ spec:
     metadata:
       labels:
         app: auth
+      annotations:
+        sidecar.istio.io/proxyCPU: 10m
+        sidecar.istio.io/proxyMemory: 64Mi
+        sidecar.istio.io/proxyCPULimit: 200m
+        sidecar.istio.io/proxyMemoryLimit: 128Mi
     spec:
       containers:
         - name: auth
@@ -38,7 +43,7 @@ spec:
                   name: jwt-secret
                   key: JWT_SECRET
             - name: REDIS_ADDR
-              value: host.docker.internal:6379
+              value: host.docker.internal:16379
             - name: LISTEN_ADDR
               value: ":8080"
           readinessProbe:
@@ -55,11 +60,11 @@ spec:
             periodSeconds: 10
           resources:
             requests:
-              cpu: 50m
-              memory: 64Mi
+              cpu: 10m
+              memory: 32Mi
             limits:
-              cpu: 500m
-              memory: 256Mi
+              cpu: 200m
+              memory: 128Mi
 ---
 apiVersion: v1
 kind: Service

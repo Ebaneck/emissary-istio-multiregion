@@ -1,9 +1,27 @@
+# Auth must be PERMISSIVE: Emissary Istio integration disables outbound
+# interception (includeOutboundIPRanges: ""), so AuthService calls plain HTTP.
 apiVersion: security.istio.io/v1
 kind: PeerAuthentication
 metadata:
-  name: default
+  name: auth
   namespace: demo
 spec:
+  selector:
+    matchLabels:
+      app: auth
+  mtls:
+    mode: PERMISSIVE
+---
+# Boards stay STRICT — Emissary Mapping uses tls: istio-upstream (mTLS).
+apiVersion: security.istio.io/v1
+kind: PeerAuthentication
+metadata:
+  name: boards
+  namespace: demo
+spec:
+  selector:
+    matchLabels:
+      app: boards
   mtls:
     mode: STRICT
 ---
@@ -14,4 +32,4 @@ metadata:
   namespace: emissary
 spec:
   mtls:
-    mode: STRICT
+    mode: PERMISSIVE

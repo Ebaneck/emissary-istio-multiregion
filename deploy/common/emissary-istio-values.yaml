@@ -1,8 +1,21 @@
 createDefaultListeners: true
+replicaCount: 1
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 256Mi
+  limits:
+    cpu: "1"
+    memory: 512Mi
 
 podAnnotations:
   traffic.sidecar.istio.io/includeInboundPorts: ""
   traffic.sidecar.istio.io/includeOutboundIPRanges: ""
+  sidecar.istio.io/proxyCPU: "10m"
+  sidecar.istio.io/proxyMemory: "64Mi"
+  sidecar.istio.io/proxyCPULimit: "200m"
+  sidecar.istio.io/proxyMemoryLimit: "128Mi"
   proxy.istio.io/config: |
     proxyMetadata:
       OUTPUT_CERTS: /etc/istio-certs

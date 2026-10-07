@@ -1,4 +1,5 @@
 .superpowers/
 istio-*/
+.bin/
 *.tgz
 .DS_Store

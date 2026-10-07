@@ -12,9 +12,9 @@ Privacy-first dual-region edge on one laptop, inspired by [monday.com’s multi-
 
 ## Prerequisites
 
-- Docker Desktop (or Docker Engine)
+- Docker Desktop (or Docker Engine) with **≥8 GiB memory** allocated (dual k3d + Istio + Emissary is heavy; stop other stacks that bind RAM/ports)
 - [Helm](https://helm.sh/) 3, [kubectl](https://kubernetes.io/docs/tasks/tools/), Go 1.22+, [jq](https://jqlang.github.io/jq/)
-- `./scripts/up.sh` installs **k3d** and **istioctl** if missing
+- `./scripts/up.sh` installs **k3d** and **istioctl** into `./.bin` if missing
 
 ## Quick start
 
@@ -28,7 +28,7 @@ Privacy-first dual-region edge on one laptop, inspired by [monday.com’s multi-
 |----------|-----|
 | US Emissary | http://127.0.0.1:8080 |
 | EU Emissary | http://127.0.0.1:8081 |
-| Redis | localhost:6379 |
+| Redis | localhost:16379 (avoids clashing with other local Redis) |
 
 Seeded accounts: `alice@example.com` → us, `bruno@example.com` → eu.
 

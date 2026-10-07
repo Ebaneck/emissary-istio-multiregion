@@ -11,8 +11,10 @@ spec:
     x-region-target: us
   service: http://host.docker.internal:8080
   add_response_headers:
-    x-routed-from: eu
-    x-routed-to: us
+    x-routed-from:
+      value: eu
+    x-routed-to:
+      value: us
   timeout_ms: 60000
   connect_timeout_ms: 6000
   idle_timeout_ms: 300000
