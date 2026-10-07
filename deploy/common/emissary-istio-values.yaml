@@ -1,0 +1,23 @@
+createDefaultListeners: true
+
+podAnnotations:
+  traffic.sidecar.istio.io/includeInboundPorts: ""
+  traffic.sidecar.istio.io/includeOutboundIPRanges: ""
+  proxy.istio.io/config: |
+    proxyMetadata:
+      OUTPUT_CERTS: /etc/istio-certs
+  sidecar.istio.io/userVolumeMount: '[{"name": "istio-certs", "mountPath": "/etc/istio-certs"}]'
+
+volumes:
+  - emptyDir:
+      medium: Memory
+    name: istio-certs
+
+volumeMounts:
+  - name: istio-certs
+    mountPath: /etc/istio-certs/
+    readOnly: true
+
+env:
+  AMBASSADOR_ISTIO_SECRET_DIR: "/etc/istio-certs"
+  AMBASSADOR_ENVOY_BASE_ID: "1"

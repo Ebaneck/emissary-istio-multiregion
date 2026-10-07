@@ -1,1 +1,4 @@
 .superpowers/
+istio-*/
+*.tgz
+.DS_Store

@@ -1,0 +1,19 @@
+apiVersion: getambassador.io/v3alpha1
+kind: Mapping
+metadata:
+  name: handover-to-eu
+  namespace: emissary
+spec:
+  hostname: "*"
+  precedence: 100
+  prefix: /
+  headers:
+    x-region-target: eu
+  service: http://host.docker.internal:8081
+  add_response_headers:
+    x-routed-from: us
+    x-routed-to: eu
+  timeout_ms: 60000
+  connect_timeout_ms: 6000
+  idle_timeout_ms: 300000
+  cluster_idle_timeout_ms: 300000

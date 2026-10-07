@@ -1,0 +1,19 @@
+apiVersion: getambassador.io/v3alpha1
+kind: AuthService
+metadata:
+  name: demo-auth
+  namespace: emissary
+spec:
+  auth_service: auth.demo:80
+  proto: http
+  path_prefix: /extauth
+  timeout_ms: 5000
+  allowed_request_headers:
+    - Authorization
+    - Cookie
+    - X-Forwarded-Proto
+    - X-Forwarded-Host
+    - X-Envoy-Original-Path
+  allowed_authorization_headers:
+    - x-region-target
+    - x-account-id

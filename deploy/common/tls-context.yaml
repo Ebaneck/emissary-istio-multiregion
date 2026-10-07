@@ -1,0 +1,8 @@
+apiVersion: getambassador.io/v3alpha1
+kind: TLSContext
+metadata:
+  name: istio-upstream
+  namespace: emissary
+spec:
+  secret: istio-certs
+  alpn_protocols: istio

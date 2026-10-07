@@ -103,6 +103,10 @@ func (s *Server) handleLogin(w http.ResponseWriter, r *http.Request) {
 
 func (s *Server) handleExtAuth(w http.ResponseWriter, r *http.Request) {
 	path := originalPath(r)
+	path = strings.TrimPrefix(path, "/extauth")
+	if path == "" {
+		path = "/"
+	}
 	if path == "/login" || strings.HasPrefix(path, "/login?") {
 		w.WriteHeader(http.StatusOK)
 		return

@@ -1,0 +1,22 @@
+apiVersion: getambassador.io/v3alpha1
+kind: Mapping
+metadata:
+  name: login
+  namespace: emissary
+spec:
+  hostname: "*"
+  prefix: /login
+  service: auth.demo:80
+  timeout_ms: 10000
+---
+apiVersion: getambassador.io/v3alpha1
+kind: Mapping
+metadata:
+  name: boards
+  namespace: emissary
+spec:
+  hostname: "*"
+  prefix: /boards/
+  service: boards.demo:80
+  tls: istio-upstream
+  timeout_ms: 15000
